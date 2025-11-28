@@ -342,6 +342,47 @@ Skills는 범용 블로그 예제를 사용합니다 (Post/Comment/User):
 **배경:**
 이 infrastructure는 제가 Reddit에 올린 글 ["Claude Code is a Beast – Tips from 6 Months of Hardcore Use"](https://www.reddit.com/r/ClaudeAI/comments/1oivjvm/claude_code_is_a_beast_tips_from_6_months_of/)에서 자세히 설명되었습니다. 수백 건의 요청 후, 커뮤니티가 이 패턴들을 구현할 수 있도록 이 showcase가 만들어졌습니다.
 
+---
+
+## 원 글 요약 (Reddit Post Summary)
+
+**["Claude Code is a Beast – Tips from 6 Months of Hardcore Use"](https://www.reddit.com/r/ClaudeAI/comments/1oivjvm/claude_code_is_a_beast_tips_from_6_months_of/)** 원문의 핵심 내용입니다.
+
+### 프로젝트 배경
+- 저자는 6개월 동안 **혼자서 30만 줄의 코드를 다시 작성**하는 대규모 프로젝트 진행
+- Claude Code를 primary 개발 도구로 사용하며 패턴들을 발전시킴
+
+### 핵심 팁 1: Skills 시스템
+- **`skill-rules.json`** 파일로 트리거 패턴 정의
+- 파일 경로, 키워드, 의도 패턴에 기반한 **자동 활성화** 구현
+- 결과: **40-60% 토큰 효율 향상**
+
+### 핵심 팁 2: Hooks 기반 자동화
+- **TypeScript hook 시스템**으로 skill 활성화 자동화
+- `UserPromptSubmit`과 `PostToolUse` hooks가 핵심
+- 수동 skill 호출을 제거하여 워크플로우 간소화
+
+### 핵심 팁 3: Dev Docs 패턴
+- **`CLAUDE.md`** 파일로 프로젝트 동작 방식 관리
+- Context 리셋에도 살아남는 지식 보존 시스템
+- 3파일 구조: `[task]-plan.md`, `[task]-context.md`, `[task]-tasks.md`
+
+### 핵심 팁 4: 500줄 규칙과 Progressive Disclosure
+- 각 skill 파일을 **500줄 미만**으로 유지
+- 리소스 파일로 분할하여 **점진적 로딩** 구현
+- Context 제한 내에서 효율적인 정보 전달
+
+### 핵심 팁 5: 서브에이전트 활용
+- 복잡한 작업에 **전문 agents** 활용
+- 코드 리뷰, refactoring, documentation 등 특화된 역할
+- 작업 완료 후 **코드 리뷰 에이전트**로 품질 검증
+
+### 추가 팁
+- **PM2 기반 error monitoring**: 서버 에러 로그를 자동 수집하여 Claude에게 전달
+- **작은 단위 커밋**: 변경사항을 작게 유지하여 rollback 용이하게
+- **명확한 지시**: 모호함 없이 구체적으로 요청하면 더 나은 결과
+
+> 💡 **핵심 메시지**: Claude Code의 진정한 힘은 도구 자체가 아니라 **체계적인 infrastructure 구축**에 있습니다.
 
 ---
 
